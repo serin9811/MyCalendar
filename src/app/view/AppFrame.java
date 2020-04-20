@@ -122,18 +122,9 @@ public class AppFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (e.getSource() instanceof JButton) {
 					JButton b = (JButton) e.getSource();
-					String eventofDay = JOptionPane.showInputDialog(null, "May " + b.getText() + ", Things to do:");
-					if(eventofDay.equals("")) {
-						JOptionPane.showMessageDialog(null, "You should enter your schedule");
-					}
-					else if (delegate != null) {
-						delegate.onButtonClick(b.getText(), eventofDay);
-					} else {
-						throw new AssertionError("DOTO set delegate");
-					}
-				}
+					if (delegate == null ) throw new AssertionError("DOTO set delegate");
+					delegate.onDayClick(b.getText());
 			}
 		});
 		panelsForBtns[i + 5].add(btns[i]);
@@ -162,4 +153,9 @@ public class AppFrame extends JFrame {
 		}
 	}
 
+	public void showAlertView(String day) {
+		String eventDescription = JOptionPane.showInputDialog(null, "May " + day + ", Things to do:");
+		if (delegate == null ) throw new AssertionError("DOTO set delegate");
+		delegate.onInsertEvent(day, eventDescription);
+	}
 }
