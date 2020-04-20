@@ -93,6 +93,7 @@ public class AppFrame extends JFrame {
 					if (delegate == null)
 						throw new AssertionError("DOTO set delegate");
 					delegate.onEventClick(eventId);
+					table.getSelectionModel().clearSelection();
 				}
 
 			}
