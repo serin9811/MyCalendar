@@ -127,7 +127,7 @@ public class AppFrame extends JFrame {
 					if(eventofDay!=null) {
 						JOptionPane.showMessageDialog(null, "You should enter your schedule");
 					}
-					else if (delegate != null )) {
+					else if (delegate != null ){
 						delegate.onButtonClick(b.getText(), eventofDay);
 					} else {
 						throw new AssertionError("DOTO set delegate");
