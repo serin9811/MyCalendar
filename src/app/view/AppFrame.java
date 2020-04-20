@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Vector;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -41,17 +43,21 @@ public class AppFrame extends JFrame {
 	public AppFrame() {
 		setTitle("Simply Calendar");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setContentPane(new JLabel(new ImageIcon("/Users/SerinaHEO/Downloads/paint.jpg")));
 		Container c = getContentPane();
 		c.setLayout(null);
 
 		leftPanel.setLayout(null);
+		leftPanel.setOpaque(false);
 		leftPanel.setLayout(new BorderLayout());
 		leftPanel.setBounds(10, 10, 600, 480);
 
 		gridPanel.setLayout(null);
+		gridPanel.setOpaque(false);
 		gridPanel.setLayout(new GridLayout(7, 7));
 		gridPanel.setBounds(10, 90, 600, 400);
 
+		
 		for (int i = 0; i < panelsForBtns.length; i++) {
 			panelsForBtns[i] = new JPanel();
 		}
@@ -74,6 +80,7 @@ public class AppFrame extends JFrame {
 			}
 		}
 		for (int i = 0; i < panelsForBtns.length; i++) {
+			panelsForBtns[i].setOpaque(false);
 			gridPanel.add(panelsForBtns[i]);
 		}
 
@@ -130,7 +137,8 @@ public class AppFrame extends JFrame {
 
 	private void setupCalendarHeader() {
 		JLabel titleLabel = new JLabel("MAY 2020");
-		titleLabel.setFont(new Font("Segoe", Font.PLAIN, 20));
+		titleLabel.setFont(new Font("Segoe", Font.PLAIN, 30));
+		labelPanel.setOpaque(false);
 		labelPanel.add(titleLabel);
 		labelPanel.setBounds(10, 10, 600, 80);
 	}
@@ -141,8 +149,12 @@ public class AppFrame extends JFrame {
 			dtm.removeRow(0);
 		}
 		for (Event event : events) {
-			dtm.addRow(event.toVector());
+			try {
+				
+				dtm.addRow(event.toVector());
+			}catch(NullPointerException e) {
+				e.printStackTrace();
+			}
 		}
 	}
-
 }
