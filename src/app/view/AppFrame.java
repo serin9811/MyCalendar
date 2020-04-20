@@ -99,6 +99,7 @@ public class AppFrame extends JFrame {
 					String eventId = (String) table.getModel().getValueAt(rowOfTable, 0);
 					if (delegate == null)
 						throw new AssertionError("DOTO set delegate");
+					
 					delegate.onEventClick(eventId);
 					table.getSelectionModel().clearSelection();
 				}
@@ -124,10 +125,10 @@ public class AppFrame extends JFrame {
 				if (e.getSource() instanceof JButton) {
 					JButton b = (JButton) e.getSource();
 					String eventofDay = JOptionPane.showInputDialog(null, "May " + b.getText() + ", Things to do:");
-					if(eventofDay!=null) {
+					if(eventofDay.equals("")) {
 						JOptionPane.showMessageDialog(null, "You should enter your schedule");
 					}
-					else if (delegate != null ){
+					else if (delegate != null) {
 						delegate.onButtonClick(b.getText(), eventofDay);
 					} else {
 						throw new AssertionError("DOTO set delegate");
@@ -160,4 +161,5 @@ public class AppFrame extends JFrame {
 			}
 		}
 	}
+
 }
