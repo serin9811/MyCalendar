@@ -18,13 +18,21 @@ public class AppController implements AppFrameDelegate, EventDetailControllerDel
 		appFrame.delegate = this;
 		appFrame.updateTable(calendar.getEvents());
 	}
-
+	
+	// AppFrameDelegate
 	@Override
-	public void onButtonClick(String whichButton, String thingsToDo) {
-	ArrayList<Event> events = calendar.insert(whichButton, thingsToDo);
-	appFrame.updateTable(events);
+	public void onDayClick(String day) {
+		appFrame.showAlertView(day);
 	}
 
+	@Override
+	public void onInsertEvent(String day, String eventDescription) {
+		if (eventDescription == null) return;
+		ArrayList<Event> events = calendar.insert(day, eventDescription);
+		appFrame.updateTable(events);
+	}
+	
+	// EventDetailControllerDelegate
 	@Override
 	public void onEventClick(String eventId) {
 		Event event= calendar.getEvent(eventId);
