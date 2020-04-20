@@ -99,6 +99,7 @@ public class AppFrame extends JFrame {
 					String eventId = (String) table.getModel().getValueAt(rowOfTable, 0);
 					if (delegate == null)
 						throw new AssertionError("DOTO set delegate");
+					
 					delegate.onEventClick(eventId);
 					table.getSelectionModel().clearSelection();
 				}
@@ -151,7 +152,7 @@ public class AppFrame extends JFrame {
 			}
 		}
 	}
-	
+
 	public void showAlertView(String day) {
 		String eventDescription = JOptionPane.showInputDialog(null, "May " + day + ", Things to do:");
 		if (delegate == null ) throw new AssertionError("DOTO set delegate");
