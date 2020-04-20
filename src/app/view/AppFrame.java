@@ -124,7 +124,10 @@ public class AppFrame extends JFrame {
 				if (e.getSource() instanceof JButton) {
 					JButton b = (JButton) e.getSource();
 					String eventofDay = JOptionPane.showInputDialog(null, "May " + b.getText() + ", Things to do:");
-					if (delegate != null && !(eventofDay.equals("")) {
+					if(eventofDay!=null) {
+						JOptionPane.showMessageDialog(null, "You should enter your schedule");
+					}
+					else if (delegate != null )) {
 						delegate.onButtonClick(b.getText(), eventofDay);
 					} else {
 						throw new AssertionError("DOTO set delegate");
